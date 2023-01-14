@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "tia",
+  "version": "${version}",
+
+  "name": "Tiny Item Animations",
+  "description": "Adds a cute little animation when picking up items with your mouse.",
+  "authors": [
+    "Trivaxy"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/tiny-item-animations",
+    "sources": "https://github.com/trivaxy/tiny-item-animations"
+  },
+
+  "license": "MIT",
+  "icon": "assets/tia/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+    ],
+    "client": [
+      "xyz.trivaxy.tia.TiaMod"
+    ]
+  },
+  "mixins": [
+    "tia.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.11",
+    "java": ">=17"
+  },
+  "suggests": {
+  }
+}
