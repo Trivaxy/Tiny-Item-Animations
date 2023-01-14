@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "xyz.trivaxy.tia.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "tia.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "AbstractContainerScreenMixin",
+    "SlotMixin",
+    "ItemRendererMixin"
+  ],
+  "minVersion": "0.8"
+}
