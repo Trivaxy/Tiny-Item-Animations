@@ -30,7 +30,7 @@ public class MixinInjects {
         Animated slot = (Animated) pSlot;
 
         float progress = slot.getAnimationProgress();
-        progress -= Minecraft.getInstance().getPartialTick() * TiaConfig.animationSpeed.get();
+        progress -= Minecraft.getInstance().getFrameTime() * TiaConfig.animationSpeed.get();
         if (progress < 0f)
             progress = 0f;
 
@@ -52,5 +52,11 @@ public class MixinInjects {
         Animated slot = (Animated) currentlyRenderingSlot;
         float scale = 1f + (TiaConfig.pickupScale.get().floatValue() - 1f) * (1 - (float)Math.pow(1 - slot.getAnimationProgress(), 5));
         RenderSystem.getModelViewStack().scale(scale, scale, scale);
+    }
+
+    public static void onSlotStackedOn(Slot pSlot) {
+        Animated slot = (Animated) pSlot;
+        slot.setAnimationProgress(1f);
+        TiaMod.carriedAnimationProgress = 0f;
     }
 }
