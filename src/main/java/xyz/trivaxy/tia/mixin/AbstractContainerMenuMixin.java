@@ -17,7 +17,7 @@ import xyz.trivaxy.tia.MixinInjects;
 public class AbstractContainerMenuMixin {
     @Shadow @Final public NonNullList<Slot> slots;
 
-    @Inject(method = "doClick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;overrideStackedOnOther(Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;)Z", shift = At.Shift.AFTER))
+    @Inject(method = "doClick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/AbstractContainerMenu;tryItemClickBehaviourOverride(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z", shift = At.Shift.AFTER))
     private void injectOnSlotClick(int i, int j, ClickType clickType, Player player, CallbackInfo ci) {
         MixinInjects.onSlotStackedOn(slots.get(i));
     }
