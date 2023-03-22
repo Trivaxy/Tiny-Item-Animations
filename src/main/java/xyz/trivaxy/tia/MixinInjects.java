@@ -10,20 +10,17 @@ import net.minecraft.world.item.ItemStack;
 public class MixinInjects {
     private static Slot currentlyRenderingSlot = null;
 
-    public static void preRenderFloatingItem(int leftPos, int topPos, int mouseX, int mouseY, float partialTicks, ItemStack draggingItem) {
+    public static void preRenderFloatingItem(PoseStack poseStack, int leftPos, int topPos, int mouseX, int mouseY, float partialTicks, ItemStack draggingItem) {
         TiaMod.carriedAnimationProgress += partialTicks * TiaConfig.animationSpeed;
         if (TiaMod.carriedAnimationProgress > 1f)
             TiaMod.carriedAnimationProgress = 1f;
 
-        PoseStack poseStack = RenderSystem.getModelViewStack();
-        poseStack.translate(-(leftPos - mouseX), -(topPos - mouseY), 0);
-        poseStack.translate(-4, -(draggingItem.isEmpty() ? 4 : 8), 0f);
+        poseStack.translate(-(leftPos - mouseX), -(topPos - mouseY - 8), 0);
 
         float scale = 1f + (TiaConfig.pickupScale - 1f) * (1 - (float)Math.pow(1 - TiaMod.carriedAnimationProgress, 5));
         poseStack.scale(scale, scale, scale);
 
-        poseStack.translate((leftPos - mouseX), (topPos - mouseY), 0);
-        poseStack.translate(4, (draggingItem.isEmpty() ? 4 : 8), 0f);
+        poseStack.translate(leftPos - mouseX, topPos - mouseY - 8, 0);
     }
 
     public static void postRenderSlot(Slot pSlot) {
