@@ -1,21 +1,21 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = 'https://maven.parchmentmc.org' }
+        // maven { url = 'https://maven.parchmentmc.org' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: "${forgegradleVersion}", changing: false
         classpath "org.spongepowered:mixingradle:${mixingradleVersion}"
-        classpath "org.parchmentmc:librarian:${librarianVersion}"
+        // classpath "org.parchmentmc:librarian:${librarianVersion}"
     }
 }
 
 apply plugin: 'maven-publish'
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
+// apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 version = "${project.minecraftVersion}-${project.modVersion}"
 group = 'xyz.trivaxy.tia' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -31,7 +31,8 @@ mixin {
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: 'parchment', version: "${parchmentVersion}-${minecraftVersion}"
+    // mappings channel: 'parchment', version: "${parchmentVersion}-${minecraftVersion}"
+    mappings channel: 'official', version: "${minecraftVersion}"
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -125,7 +126,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.19.3-44.1.0'
+    minecraft 'net.minecraftforge:forge:1.19.4-45.0.22'
     annotationProcessor "org.spongepowered:mixin:${mixinVersion}:processor"
 }
 

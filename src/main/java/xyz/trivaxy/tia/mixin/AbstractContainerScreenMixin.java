@@ -19,9 +19,9 @@ public class AbstractContainerScreenMixin {
 
     @Shadow private ItemStack draggingItem;
 
-    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/AbstractContainerScreen;renderFloatingItem(Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V"))
+    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/AbstractContainerScreen;renderFloatingItem(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V"))
     private void injectRender(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick, CallbackInfo ci) {
-        MixinInjects.preRenderFloatingItem(leftPos, topPos, pMouseX, pMouseY, pPartialTick, draggingItem);
+        MixinInjects.preRenderFloatingItem(pPoseStack, leftPos, topPos, pMouseX, pMouseY, pPartialTick, draggingItem);
     }
 
     @Inject(method = "renderSlot", at = @At("TAIL"))
@@ -29,12 +29,12 @@ public class AbstractContainerScreenMixin {
         MixinInjects.postRenderSlot(pSlot);
     }
 
-    @Inject(method = "renderSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/ItemRenderer;renderAndDecorateItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;III)V"))
+    @Inject(method = "renderSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/ItemRenderer;renderAndDecorateItem(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;III)V"))
     private void injectRenderSlotScale(PoseStack pPoseStack, Slot pSlot, CallbackInfo ci) {
         MixinInjects.preRenderSlotItem(pPoseStack, pSlot, leftPos, topPos);
     }
 
-    @Inject(method = "renderSlot", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/client/renderer/entity/ItemRenderer;renderGuiItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V"))
+    @Inject(method = "renderSlot", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/client/renderer/entity/ItemRenderer;renderGuiItemDecorations(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V"))
     private void injectRenderSlotPopPose(PoseStack pPoseStack, Slot pSlot, CallbackInfo ci) {
         MixinInjects.postRenderSlotItem(pPoseStack);
     }
