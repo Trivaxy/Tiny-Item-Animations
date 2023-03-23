@@ -15,12 +15,12 @@ public class MixinInjects {
         if (TiaMod.carriedAnimationProgress > 1f)
             TiaMod.carriedAnimationProgress = 1f;
 
-        poseStack.translate(-(leftPos - mouseX), -(topPos - mouseY - 8), 0);
+        poseStack.translate(-(leftPos - mouseX), -(topPos - mouseY - 4), 0);
 
         float scale = 1f + (TiaConfig.pickupScale - 1f) * (1 - (float)Math.pow(1 - TiaMod.carriedAnimationProgress, 5));
         poseStack.scale(scale, scale, scale);
 
-        poseStack.translate(leftPos - mouseX, topPos - mouseY - 8, 0);
+        poseStack.translate(leftPos - mouseX, topPos - mouseY - 4, 0);
     }
 
     public static void postRenderSlot(Slot pSlot) {
