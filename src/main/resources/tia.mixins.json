@@ -7,8 +7,9 @@
   ],
   "client": [
     "AbstractContainerScreenMixin",
+    "AbstractContainerMenuMixin",
     "SlotMixin",
-    "ItemRendererMixin"
+    "GuiGraphicsMixin"
   ],
   "minVersion": "0.8"
 }
