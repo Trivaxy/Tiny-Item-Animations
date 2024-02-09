@@ -9,6 +9,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
 @Mod(TiaMod.MODID)
@@ -21,6 +22,11 @@ public class TiaMod
 
     public TiaMod()
     {
+        if (FMLEnvironment.dist.isDedicatedServer()) {
+            LOGGER.info("TIA is a client-side mod and cannot be loaded on a dedicated server.");
+            return;
+        }
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TiaConfig.SPEC, MODID + ".toml");
