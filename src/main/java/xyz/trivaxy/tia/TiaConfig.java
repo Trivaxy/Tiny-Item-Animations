@@ -1,31 +1,30 @@
 package xyz.trivaxy.tia;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
+@Mod.EventBusSubscriber(modid = TiaMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TiaConfig {
-    public static final ForgeConfigSpec SPEC;
+    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-    public static ForgeConfigSpec.DoubleValue animationSpeed;
-    public static ForgeConfigSpec.DoubleValue pickupScale;
+    private static final ModConfigSpec.DoubleValue ANIMATION_SPEED = BUILDER
+            .comment("The speed at which item pickup / insert animations play")
+            .defineInRange("animation_speed", 0.5, 0.01, 10);
 
-    static {
-        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        setupConfig(builder);
-        SPEC = builder.build();
-    }
+    private static final ModConfigSpec.DoubleValue PICKUP_SCALE = BUILDER
+            .comment("The scale at which items are rendered when picked up")
+            .defineInRange("pickup_scale", 1.4, 0.01, 10);
 
-    private static void setupConfig(ForgeConfigSpec.Builder builder) {
-        builder.comment("Configuration settings for Tia");
-        builder.push("General options");
+    public static final ModConfigSpec CONFIG_SPEC = BUILDER.build();
 
-        animationSpeed = builder
-                .comment("The speed at which item pickup / insert animations play")
-                .defineInRange("animation_speed", 0.5, 0.01, 10);
+    public static float animationSpeed;
+    public static float pickupScale;
 
-        pickupScale = builder
-                .comment("The scale at which items are rendered when picked up")
-                .defineInRange("pickup_scale", 1.4, 0.01, 10);
-
-        builder.pop();
+    @SubscribeEvent
+    private static void onLoad(final ModConfigEvent event) {
+        animationSpeed = ANIMATION_SPEED.get().floatValue();
+        pickupScale = PICKUP_SCALE.get().floatValue();
     }
 }

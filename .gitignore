@@ -115,6 +115,6 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-### ForgeGradle ###
+### NeoForge ###
 # Minecraft client/server files
-run/
+runs/

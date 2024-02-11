@@ -1,26 +1,17 @@
 package xyz.trivaxy.tia;
 
-import com.mojang.logging.LogUtils;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 
 @Mod(TiaMod.MODID)
 public class TiaMod
 {
     public static final String MODID = "tia";
-    private static final Logger LOGGER = LogUtils.getLogger();
-
     public static float carriedAnimationProgress = 0f;
 
-    public TiaMod()
-    {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        MinecraftForge.EVENT_BUS.register(this);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TiaConfig.SPEC, MODID + ".toml");
+    public TiaMod(IEventBus modEventBus) {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TiaConfig.CONFIG_SPEC);
     }
 }

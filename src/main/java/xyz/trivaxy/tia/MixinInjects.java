@@ -12,13 +12,13 @@ public class MixinInjects {
     public static void preRenderFloatingItem(GuiGraphics gui, int leftPos, int topPos, int mouseX, int mouseY, float partialTicks) {
         PoseStack poseStack = gui.pose();
 
-        TiaMod.carriedAnimationProgress += partialTicks * TiaConfig.animationSpeed.get();
+        TiaMod.carriedAnimationProgress += partialTicks * TiaConfig.animationSpeed;
         if (TiaMod.carriedAnimationProgress > 1f)
             TiaMod.carriedAnimationProgress = 1f;
 
         poseStack.translate(-(leftPos - mouseX), -(topPos - mouseY - 4), 0);
 
-        float scale = 1f + (TiaConfig.pickupScale.get().floatValue() - 1f) * (1 - (float)Math.pow(1 - TiaMod.carriedAnimationProgress, 5));
+        float scale = 1f + (TiaConfig.pickupScale - 1f) * (1 - (float)Math.pow(1 - TiaMod.carriedAnimationProgress, 5));
         poseStack.scale(scale, scale, scale);
 
         poseStack.translate(leftPos - mouseX, topPos - mouseY - 4, 0);
@@ -28,7 +28,7 @@ public class MixinInjects {
         Animated slot = (Animated) pSlot;
 
         float progress = slot.getAnimationProgress();
-        progress -= Minecraft.getInstance().getPartialTick() * TiaConfig.animationSpeed.get();
+        progress -= Minecraft.getInstance().getPartialTick() * TiaConfig.animationSpeed;
         if (progress < 0f)
             progress = 0f;
 
@@ -45,7 +45,7 @@ public class MixinInjects {
             return;
 
         Animated slot = (Animated) currentlyRenderingSlot;
-        float scale = 1f + (TiaConfig.pickupScale.get().floatValue() - 1f) * (1 - (float)Math.pow(1 - slot.getAnimationProgress(), 5));
+        float scale = 1f + (TiaConfig.pickupScale - 1f) * (1 - (float)Math.pow(1 - slot.getAnimationProgress(), 5));
         pose.scale(scale, scale, scale);
     }
 
