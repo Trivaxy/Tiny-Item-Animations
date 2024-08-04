@@ -1,21 +1,45 @@
-MIT License
+Limited Platform Upload License (LPUL)
 
-Copyright (c) 2023 Trivaxy
+Copyright (c) 2024 Trivaxy
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Definitions
+   "Software" means the software and associated documentation files provided under this license.
+   "Public Platform" means any publicly accessible website, service, or distribution network that allows for mass distribution or hosting of software, including but not limited to mod repositories, app stores, and content distribution networks.
+   "Explicit Written Permission" means a signed document or digitally verifiable message (e.g., PGP-signed email, digitally signed document through a recognized digital signature service) from the copyright holder granting specific hosting rights.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. Grant of Rights
+   Subject to the terms and conditions of this license, the copyright holder hereby grants you a worldwide, royalty-free, non-exclusive license to:
+   a) Use the Software for any purpose.
+   b) Copy and distribute the Software to other individuals.
+   c) Modify the Software and contribute changes to the original project.
+   d) Access and study the source code.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+3. Conditions
+   The rights granted in Section 2 are subject to the following conditions:
+   a) Redistributions of the Software must retain this entire license text and copyright notice.
+   b) Hosting the Software or its compiled form on any Public Platform is prohibited without Explicit Written Permission from the copyright holder, except by the copyright holder themselves. Individual sharing and distribution directly between users is permitted and encouraged, as long as it does not involve Public Platforms unless explicitly permitted.
+   c) If the copyright holder uploads the Software to a Public Platform, this act constitutes permission for others to use the Software on that platform.
+
+4. Contributions
+   By contributing to the Software, you agree that your contributions will be licensed under the same terms as this license.
+
+5. Disclaimer of Warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+6. Limitation of Liability
+   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+7. Acceptance
+   This license is accepted by using, copying, modifying, or distributing the Software.
+
+8. Termination
+   This license terminates automatically if you fail to comply with its terms and conditions. Upon termination, you must cease all use, distribution, and possession of the Software.
+
+9. Severability
+    If any provision of this license is held to be unenforceable or invalid, that provision will be enforced to the maximum extent possible, and the other provisions will remain in full force and effect.
+
+10. No Waiver
+    Failure by the copyright holder to enforce any provision of this license will not be deemed a waiver of future enforcement of that or any other provision.
+
+11. Entire Agreement
+    This license constitutes the entire agreement between the parties with respect to the use of the Software licensed hereunder and supersedes all prior or contemporaneous understandings regarding such subject matter.
