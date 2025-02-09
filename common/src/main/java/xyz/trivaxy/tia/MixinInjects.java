@@ -30,7 +30,7 @@ public class MixinInjects {
         Animated slot = (Animated) pSlot;
 
         float progress = slot.getAnimationProgress();
-        progress -= Minecraft.getInstance().getTimer().getRealtimeDeltaTicks() * ModConfigs.animationSpeed;
+        progress -= Minecraft.getInstance().getDeltaTracker().getRealtimeDeltaTicks() * ModConfigs.animationSpeed;
         if (progress < 0f)
             progress = 0f;
 
