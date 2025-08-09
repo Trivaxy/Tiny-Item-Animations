@@ -4,9 +4,7 @@
   "package": "xyz.trivaxy.tia.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [],
-  "client": [
-    "AbstractContainerScreenMixinNeoForge"
-  ],
+  "client": [],
   "server": [],
   "injectors": {
     "defaultRequire": 1

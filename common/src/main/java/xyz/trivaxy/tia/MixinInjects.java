@@ -1,32 +1,68 @@
 package xyz.trivaxy.tia;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.inventory.Slot;
+import org.joml.Matrix3x2fStack;
 
 // just so hotswap works
 public class MixinInjects {
 
     private static Slot currentlyRenderingSlot = null;
     private static float carriedAnimationProgress = 0f;
+    private static boolean currenlyRenderingMouseItem = false;
 
-    public static void preRenderFloatingItem(GuiGraphics gui, int leftPos, int topPos, int mouseX, int mouseY, float partialTicks) {
-        PoseStack poseStack = gui.pose();
+    public static void preRenderItem(Matrix3x2fStack pose, int i, int j) {
+        pose.pushMatrix();
+        applyScaling(pose, i, j);
+    }
 
-        carriedAnimationProgress += partialTicks * ModConfigs.animationSpeed;
+    public static void postRenderItem(Matrix3x2fStack pose) {
+        pose.popMatrix();
+    }
+
+    public static void preRenderItemDecorations(Matrix3x2fStack pose, int i, int j) {
+        applyScaling(pose, i, j); // item decorations don't need a matrix push/pop
+    }
+
+    private static void applyScaling(Matrix3x2fStack pose, int i, int j) {
+        float centerX = i + 8;
+        float centerY = j + 8;
+
+        pose.translate(centerX, centerY);
+
+        if (currentlyRenderingSlot != null) {
+            applyScaleForSlot(pose);
+        }
+
+        if (currenlyRenderingMouseItem) {
+            applyScaleForMouseItem(pose);
+        }
+
+        pose.translate(-centerX, -centerY);
+    }
+
+    public static void applyScaleForMouseItem(Matrix3x2fStack pose) {
+        carriedAnimationProgress += Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(true) * ModConfigs.animationSpeed;
         if (carriedAnimationProgress > 1f)
             carriedAnimationProgress = 1f;
 
-        poseStack.translate(-(leftPos - mouseX), -(topPos - mouseY - 4), 0);
-
         float scale = 1f + (ModConfigs.pickupScale - 1f) * (1 - (float)Math.pow(1 - carriedAnimationProgress, 5));
-        poseStack.scale(scale, scale, scale);
-
-        poseStack.translate(leftPos - mouseX, topPos - mouseY - 4, 0);
+        pose.scale(scale, scale);
     }
 
-    public static void postRenderSlot(Slot pSlot) {
+    public static void preRenderFloatingItem() {
+        currenlyRenderingMouseItem = true;
+    }
+
+    public static void postRenderFloatingItem() {
+        currenlyRenderingMouseItem = false;
+    }
+
+    public static void preRenderSlotItem(Slot slot) {
+        currentlyRenderingSlot = slot;
+    }
+
+    public static void postRenderSlotItem(Slot pSlot) {
         Animated slot = (Animated) pSlot;
 
         float progress = slot.getAnimationProgress();
@@ -38,17 +74,13 @@ public class MixinInjects {
         currentlyRenderingSlot = null;
     }
 
-    public static void preRenderSlotItem(Slot slot) {
-        currentlyRenderingSlot = slot;
-    }
-
-    public static void onRenderSlot(PoseStack pose) {
+    public static void applyScaleForSlot(Matrix3x2fStack pose) {
         if (currentlyRenderingSlot == null)
             return;
 
         Animated slot = (Animated) currentlyRenderingSlot;
         float scale = 1f + (ModConfigs.pickupScale - 1f) * (1 - (float)Math.pow(1 - slot.getAnimationProgress(), 5));
-        pose.scale(scale, scale, scale);
+        pose.scale(scale, scale);
     }
 
     public static void onSlotStackedOn(Slot pSlot) {

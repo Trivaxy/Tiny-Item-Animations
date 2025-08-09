@@ -6,7 +6,7 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 
-@Mod(Constants.MOD_ID)
+@Mod(Commons.MOD_ID)
 public class TiaMod {
 
     public TiaMod(IEventBus eventBus) {
